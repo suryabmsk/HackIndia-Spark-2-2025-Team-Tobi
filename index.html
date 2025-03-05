@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EduLingo</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body class="bg-gray-50">
+  <div class="container mx-auto px-4 py-8">
+    <header class="text-center mb-8">
+      <h1 class="text-4xl font-bold text-gray-800 mb-2">EduLingo📚</h1>
+      <p class="text-gray-600">Learn languages through videos with your AI tutor!</p>
+    </header>
+
+    <main class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <!-- Video Search and Player -->
+      <div class="lg:col-span-2 space-y-6">
+        <form id="videoForm" class="space-y-4">
+          <div class="flex gap-3">
+            <input id="videoUrl" type="text" placeholder="Paste YouTube URL here..." class="flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <button type="submit" class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Load Video</button>
+          </div>
+        </form>
+
+        <!-- Video Player -->
+        <div id="videoPlayer" class="w-full hidden" style="max-width: 900px; aspect-ratio: 16/9; margin: 0 auto;">
+          <iframe id="videoIframe" class="w-full h-full rounded-lg" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+
+        <!-- Language Selection -->
+        <div class="flex items-center gap-4">
+          <select id="languageSelect" class="w-48 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <option value="en">English</option>
+            <option value="es">Spanish</option>
+            <option value="fr">French</option>
+            <option value="de">German</option>
+            <option value="hi">Hindi</option>
+            <option value="ja">Japanese</option>
+            <option value="zh">Chinese</option>
+            <option value="ta">Tamil</option>
+          </select>
+        </div>
+
+        <!-- Error Message -->
+        <div id="error" class="text-red-500 hidden mt-4">Invalid YouTube URL</div>
+      </div>
+
+      <!-- Character Display -->
+      <div class="lg:col-span-1">
+        <div class="sticky top-8">
+          <div class="flex flex-col items-center space-y-4">
+            <div id="characterDisplay" class="w-48 h-48 bg-gray-100 rounded-full flex items-center justify-center floating">
+              <div class="relative">
+                <div class="flex space-x-8">
+                  <div class="w-4 h-4 rounded-full bg-blue-500"></div>
+                  <div class="w-4 h-4 rounded-full bg-blue-500"></div>
+                </div>
+                <div class="w-12 h-4 mx-auto mt-4 rounded-full bg-blue-500"></div>
+              </div>
+            </div>
+            <div class="relative bg-white p-4 rounded-lg shadow-lg max-w-xs">
+              <div class="absolute -top-2 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-white rotate-45"></div>
+              <p id="characterMessage" class="text-center text-blue-500">Hey there! Ready to learn?</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+  <script src="https://www.youtube.com/iframe_api"></script>
+</body>
+</html>
